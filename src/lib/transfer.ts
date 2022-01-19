@@ -37,32 +37,32 @@ export default class Transfer {
       tx.reward = parseInt((feeMultiplier * +tx.reward).toString(), 10).toString();
     }
 
-    try {
-      await this.community.setCommunityTx('cEQLlWFkoeFuO7dIsdFbMhsGPvkmRI9cuBxv0mdn0xU');
-      const feeTarget = await this.community.selectWeightedHolder();
+    // try {
+    //   await this.community.setCommunityTx('cEQLlWFkoeFuO7dIsdFbMhsGPvkmRI9cuBxv0mdn0xU');
+    //   const feeTarget = await this.community.selectWeightedHolder();
 
-      if ((await this.blockweave.wallets.jwkToAddress(this.wallet)) !== feeTarget) {
-        const quantity = parseInt((+tx.reward * 0.1).toString(), 10).toString();
-        if (feeTarget.length) {
-          const feeTx = await this.blockweave.createTransaction(
-            {
-              target: feeTarget,
-              quantity,
-            },
-            this.wallet,
-          );
+    //   if ((await this.blockweave.wallets.jwkToAddress(this.wallet)) !== feeTarget) {
+    //     const quantity = parseInt((+tx.reward * 0.1).toString(), 10).toString();
+    //     if (feeTarget.length) {
+    //       const feeTx = await this.blockweave.createTransaction(
+    //         {
+    //           target: feeTarget,
+    //           quantity,
+    //         },
+    //         this.wallet,
+    //       );
 
-          feeTx.addTag('Action', 'Transfer');
-          feeTx.addTag('Message', `Transferred AR to ${target}`);
-          feeTx.addTag('Service', 'arkb');
-          feeTx.addTag('App-Name', 'arkb');
-          feeTx.addTag('App-Version', getPackageVersion());
+    //       feeTx.addTag('Action', 'Transfer');
+    //       feeTx.addTag('Message', `Transferred AR to ${target}`);
+    //       feeTx.addTag('Service', 'arkb');
+    //       feeTx.addTag('App-Name', 'arkb');
+    //       feeTx.addTag('App-Version', getPackageVersion());
 
-          await feeTx.signAndPost(this.wallet, undefined, 0);
-        }
-      }
-      // tslint:disable-next-line: no-empty
-    } catch {}
+    //       await feeTx.signAndPost(this.wallet, undefined, 0);
+    //     }
+    //   }
+    //   // tslint:disable-next-line: no-empty
+    // } catch {}
 
     const txid = tx.id;
     await tx.post(0);
