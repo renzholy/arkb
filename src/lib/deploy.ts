@@ -162,9 +162,9 @@ export default class Deploy {
           const ipfsHash = await this.ipfs.hash(data);
           newTags.addTag('IPFS-Add', ipfsHash);
         }
-        newTags.addTag('User-Agent', `arkb`);
-        newTags.addTag('User-Agent-Version', getPackageVersion());
-        newTags.addTag('Type', 'file');
+        // newTags.addTag('User-Agent', `arkb`);
+        // newTags.addTag('User-Agent-Version', getPackageVersion());
+        // newTags.addTag('Type', 'file');
         if (type) newTags.addTag('Content-Type', type);
         newTags.addTag('File-Hash', hash);
 

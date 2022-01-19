@@ -27,9 +27,9 @@ export default class Transfer {
       this.wallet,
     );
 
-    tx.addTag('User-Agent', `arkb`);
-    tx.addTag('User-Agent-Version', getPackageVersion());
-    tx.addTag('Type', 'transfer');
+    // tx.addTag('User-Agent', `arkb`);
+    // tx.addTag('User-Agent-Version', getPackageVersion());
+    // tx.addTag('Type', 'transfer');
 
     await this.blockweave.transactions.sign(tx, this.wallet);
 
